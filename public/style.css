@@ -1,0 +1,132 @@
+/* ==================== DataDoctor 主題 ==================== */
+.dd-mask {
+    position: fixed; inset: 0; z-index: 99999;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    animation: dd-fadeIn 0.2s ease;
+}
+@keyframes dd-fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.dd-win {
+    background: #1a1a2e; color: #e0e0e0;
+    border-radius: 16px; width: 680px; max-width: 95vw; max-height: 85vh;
+    display: flex; flex-direction: column;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+    overflow: hidden;
+}
+.dd-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+}
+.dd-head h3 { margin: 0; font-size: 1.1em; display: flex; align-items: center; gap: 8px; }
+.dd-head h3 i { color: #4fc3f7; }
+.dd-head small { opacity: 0.4; font-weight: normal; }
+.dd-close {
+    cursor: pointer; font-size: 1.5em; opacity: 0.5; width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center; border-radius: 8px;
+    transition: all 0.15s;
+}
+.dd-close:hover { opacity: 1; background: rgba(255,255,255,0.1); }
+
+/* ==================== 工具列 ==================== */
+.dd-toolbar {
+    display: flex; gap: 8px; padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+}
+.dd-btn {
+    border: none; border-radius: 8px; padding: 8px 16px; cursor: pointer;
+    font-size: 0.85em; display: flex; align-items: center; gap: 6px;
+    transition: all 0.15s; font-family: inherit;
+}
+.dd-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.dd-btn.primary { background: #4fc3f7; color: #0a0a1a; font-weight: 600; }
+.dd-btn.primary:hover:not(:disabled) { background: #81d4fa; transform: translateY(-1px); }
+.dd-btn.secondary { background: rgba(255,255,255,0.08); color: #ccc; }
+.dd-btn.secondary:hover:not(:disabled) { background: rgba(255,255,255,0.15); }
+
+/* ==================== 摘要區 ==================== */
+.dd-summary {
+    margin: 12px 20px 0; padding: 16px; border-radius: 12px;
+    display: flex; align-items: center; gap: 16px;
+}
+.dd-sum-ok { background: linear-gradient(135deg, rgba(76,175,80,0.15), rgba(76,175,80,0.05)); border: 1px solid rgba(76,175,80,0.3); }
+.dd-sum-bad { background: linear-gradient(135deg, rgba(255,152,0,0.15), rgba(255,152,0,0.05)); border: 1px solid rgba(255,152,0,0.3); }
+.dd-sum-icon { font-size: 2em; }
+.dd-sum-title { font-size: 1.1em; font-weight: 600; margin-bottom: 4px; }
+.dd-sum-detail { display: flex; gap: 16px; font-size: 0.85em; }
+.dd-stat-crit { color: #ef5350; }
+.dd-stat-warn { color: #ffa726; }
+.dd-stat-info { color: #42a5f5; }
+
+/* ==================== 結果列表 ==================== */
+.dd-results { flex: 1; overflow-y: auto; padding: 12px 20px; }
+.dd-placeholder { text-align: center; padding: 48px 20px; opacity: 0.4; font-size: 1.1em; line-height: 2; }
+.dd-error { background: rgba(244,67,54,0.15); border: 1px solid rgba(244,67,54,0.3); border-radius: 8px; padding: 16px; color: #ef5350; }
+
+/* --- 分類 --- */
+.dd-cat { margin-bottom: 6px; border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.03); }
+.dd-cat-head {
+    display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+    cursor: pointer; transition: background 0.15s; user-select: none;
+}
+.dd-cat-head:hover { background: rgba(255,255,255,0.06); }
+.dd-cat-icon { font-size: 1.1em; }
+.dd-cat-name { font-weight: 600; flex: 1; }
+.dd-cat-count { font-size: 0.8em; opacity: 0.5; }
+.dd-cat-issues { font-size: 0.75em; background: rgba(244,67,54,0.25); color: #ef9a9a; padding: 2px 8px; border-radius: 10px; }
+.dd-cat-ok { color: #4caf50; font-size: 0.85em; }
+.dd-cat-arrow { opacity: 0.3; font-size: 0.7em; transition: transform 0.2s; }
+.dd-cat-body { padding: 0 14px 10px; }
+.dd-cat-empty { padding: 8px; opacity: 0.5; font-size: 0.9em; }
+
+/* --- 檔案條目 --- */
+.dd-file {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 10px 12px; margin: 4px 0; border-radius: 8px;
+    background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.04);
+    transition: all 0.15s;
+}
+.dd-file:hover { border-color: rgba(255,255,255,0.1); }
+.dd-file-info { flex: 1; min-width: 0; }
+.dd-file-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dd-file-path { font-family: 'Consolas', 'Monaco', monospace; font-size: 0.82em; word-break: break-all; opacity: 0.9; }
+.dd-file-error { font-size: 0.82em; color: #ef9a9a; margin-top: 4px; }
+.dd-file-sug { font-size: 0.78em; color: #a5d6a7; margin-top: 3px; opacity: 0.85; }
+.dd-file-size { font-size: 0.75em; opacity: 0.4; margin-top: 2px; }
+
+.dd-badge {
+    font-size: 0.7em; padding: 1px 6px; border-radius: 6px;
+    white-space: nowrap; font-weight: 600;
+}
+.dd-critical { background: rgba(244,67,54,0.25); color: #ef9a9a; }
+.dd-warning { background: rgba(255,152,0,0.25); color: #ffcc80; }
+.dd-info { background: rgba(33,150,243,0.2); color: #90caf9; }
+
+.dd-btn-del {
+    background: rgba(244,67,54,0.15); border: 1px solid rgba(244,67,54,0.3);
+    color: #ef9a9a; border-radius: 6px; padding: 6px 8px; cursor: pointer;
+    transition: all 0.15s; flex-shrink: 0;
+}
+.dd-btn-del:hover { background: rgba(244,67,54,0.35); color: #fff; }
+
+/* ==================== 日誌區 ==================== */
+.dd-logs-title { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.dd-logs-wrap { background: #0d0d1a; border-radius: 8px; padding: 12px; max-height: 400px; overflow-y: auto; }
+.dd-logs-pre { font-family: 'Consolas', 'Monaco', monospace; font-size: 0.78em; white-space: pre-wrap; word-break: break-all; margin: 0; line-height: 1.6; }
+.dd-log-err { color: #ef5350; font-weight: 600; }
+.dd-log-warn { color: #ffa726; }
+
+/* ==================== 底部 ==================== */
+.dd-foot {
+    text-align: center; padding: 10px; font-size: 0.75em; opacity: 0.3;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ==================== 捲軸 ==================== */
+.dd-results::-webkit-scrollbar { width: 6px; }
+.dd-results::-webkit-scrollbar-track { background: transparent; }
+.dd-results::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+.dd-logs-wrap::-webkit-scrollbar { width: 6px; }
+.dd-logs-wrap::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
