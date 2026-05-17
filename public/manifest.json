@@ -1,0 +1,8 @@
+{
+    "display_name": "資料健檢 DataDoctor",
+    "loading_order": 100,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css"
+}
